@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace dict
+namespace AddressBook
 {
     class Contacts
     {
@@ -20,8 +20,8 @@ namespace dict
         public void Check()
         {
             Console.WriteLine("\nThe details for {0} {1} are:\nAddress: {2}\nCity: {3}\nState: {4}\n" +
-                "Zip Code: {5}\nPhone Number: {6}\nEmail: {7}\n", Array_of_Details[0],
-                Array_of_Details[1], Array_of_Details[2], Array_of_Details[3],
+                "Zip Code: {5}\nPhone Number: {6}\nEmail: {7}\n", Array_of_Details[0], 
+                Array_of_Details[1], Array_of_Details[2], Array_of_Details[3], 
                 Array_of_Details[4], Array_of_Details[5], Array_of_Details[6], Array_of_Details[7]);
         }
     }
@@ -60,7 +60,7 @@ namespace dict
             string Phone_Number = Console.ReadLine();
             Console.Write("Enter Email Address: ");
             string Email = Console.ReadLine();
-            Contacts Record = new Contacts(First_Name, Last_Name, Address, City, State, Zip_Code,
+            Contacts Record = new Contacts(First_Name, Last_Name, Address, City, State, Zip_Code, 
                 Phone_Number, Email);
             Page.Add(First_Name, Record.Array_of_Details);
             Record.Check();
@@ -107,11 +107,11 @@ namespace dict
                 "city(4), state(5), zip code(6), \nphone number(7) or email(8): ");
             int Index = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter the new value: ");
-            Edit_Detail[Index - 1] = Console.ReadLine();
+            Edit_Detail[Index-1] = Console.ReadLine();
             Contacts Record = new Contacts(
-                Edit_Detail[0], Edit_Detail[1],
-                Edit_Detail[2], Edit_Detail[3],
-                Edit_Detail[4], Edit_Detail[5],
+                Edit_Detail[0], Edit_Detail[1], 
+                Edit_Detail[2], Edit_Detail[3], 
+                Edit_Detail[4], Edit_Detail[5], 
                 Edit_Detail[6], Edit_Detail[7]);
             Page.Remove(First_Name);
             Page.Add(Edit_Detail[0], Edit_Detail);
@@ -157,7 +157,7 @@ namespace dict
         public int search(string name, int cityOrState)
         {
             int num = 0;
-            foreach (string[] details in Page.Values)
+            foreach (string[] details in Page.Values) 
             {
                 if (cityOrState == 1)
                 {
@@ -168,7 +168,7 @@ namespace dict
                         num++;
                     }
                 }
-                else if (cityOrState == 2)
+                else
                 {
                     Func<string[], bool> InState = details => details[4].ToLower() == name.ToLower();
                     if (InState(details))
@@ -184,7 +184,7 @@ namespace dict
         {
             Console.Write("Search by (City/State): ");
             string cityOrState = Console.ReadLine().ToLower();
-            if (cityOrState.ToLower() == "city")
+            if (cityOrState == "city")
             {
                 Console.Write("Enter the name of the city: ");
                 string city = Console.ReadLine();
@@ -193,7 +193,7 @@ namespace dict
                     Display(name);
                 persons.Clear();
             }
-            else if (cityOrState.ToLower() == "state")
+            else
             {
                 Console.Write("Enter the name of the state: ");
                 string state = Console.ReadLine();
@@ -201,6 +201,15 @@ namespace dict
                 foreach (string name in persons)
                     Display(name);
                 persons.Clear();
+            }
+        }
+        public void SortAlphabatically()
+        {
+            List<string> keys = new List<string>(Page.Keys);
+            keys.Sort();
+            foreach (string key in keys)
+            {
+                Display(key);
             }
         }
         public void Access_to_Addressbook()
@@ -212,6 +221,7 @@ namespace dict
                 Console.WriteLine("2 to Edit Contacts");
                 Console.WriteLine("3 to Delete Contacts");
                 Console.WriteLine("4 to Display Contacts");
+                Console.WriteLine("5 to Sort the address book");
                 Console.WriteLine("0 to EXIT");
                 Console.Write("Enter a value: ");
                 Control = Convert.ToInt32(Console.ReadLine());
@@ -252,6 +262,9 @@ namespace dict
                             Confirmation = Convert.ToChar(Console.ReadLine());
                         }
                         break;
+                    case 5:
+                        SortAlphabatically();
+                        break;
                     default:
                         Console.WriteLine("Invalid Entry");
                         break;
@@ -286,23 +299,21 @@ namespace dict
                         string cityOrState = Console.ReadLine().ToLower();
                         string name = "";
                         int num = 0;
-                        if (cityOrState.ToLower() == "city")
+                        if (cityOrState == "city")
                         {
                             Console.Write("Enter the name of the city: ");
                             name = Console.ReadLine();
                             num = 1;
                         }
-                        else if (cityOrState.ToLower() == "state")
+                        else if (cityOrState == "state")
                         {
                             Console.Write("Enter the name of the state: ");
                             name = Console.ReadLine();
                             num = 2;
                         }
                         Console.WriteLine("Names of people living in {0} are:\n", name);
-                        int result1 = Relatives.search(name, num);
-                        int result2 = Work.search(name, num);
-                        int result= result1+result2;
-                        Console.WriteLine("Number of people in {0} are {1}", name, result);
+                        int result = Relatives.search(name, num) + Work.search(name, num);
+                        Console.WriteLine("Number of people in {0} are {1}", name, num);
                         break;
                     case 4:
                         Console.WriteLine("\n1 for Relatives");
@@ -328,7 +339,7 @@ namespace dict
                         Console.WriteLine("Invalid Entry");
                         break;
                 }
-            } while (Control != 0);
+            } while (Control != 0); 
         }
     }
 }
