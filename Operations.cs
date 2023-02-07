@@ -35,8 +35,8 @@ namespace AddressBook
                     throw new ArgumentNullException("First name can not be null.");
                 }
 
-               
-                bool duplicate = Personlist.Exists(e => e.fname == person.fname);
+               //adding linq
+                bool duplicate = Personlist.Any(cus => cus.fname == person.fname);
                 
                     if (duplicate)
                          throw new ArgumentNullException("Another person by the same name exists in the Address Book");
