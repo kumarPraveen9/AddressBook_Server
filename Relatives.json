@@ -1,2 +1,33 @@
-["Tushar","Anand","Asha Apartment","Ghaziabad","Uttar Pradesh","201001","9876543210","tusharranand@gmail.com"]
-["Random","Person","Home","City Name","State Name","123456","1324657890","email@address.com"]
+{
+	"Contacts": [{
+			"name": "Shyam",
+			"lname": "py",
+			"address": "spttt",
+			"city": "srikakulam",
+			"state": "TN",
+			"zipCode": "201001",
+			"Phone": "36698875541",
+			"email": "shyamjaiswal@gmail.com"
+		},
+		{
+			"name": "Praveen",
+			"lname": "kumar",
+			"address": "malva",
+			"city": "vizag",
+			"state": "AP",
+			"zipCode": "201241",
+			"Phone": "96458875599",
+			"email": "praveen@gmail.com"
+		},
+		{
+			"name": "ganesh",
+			"lname": "Nikky",
+			"address": "palko",
+			"city": "trichy",
+			"state": "MP",
+			"zipCode": "201881",
+			"Phone": "86691175500",
+			"email": "NANINA@gmail.com"
+		}
+	]
+}
