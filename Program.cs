@@ -379,6 +379,6 @@ namespace AddressBook
                         break;
                 }
             } while (Control != 0); 
-        }
+        } 
     }
 }
